@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    
 }
 
 body{
@@ -9,6 +9,7 @@ body{
     font-family: 'Source Serif Pro', serif;
     min-height: 2rem;
 }
+
 
 header{
     font-size: 1rem;
@@ -43,3 +44,47 @@ form button:hover{
     color: white;
     background-color: #cde990;
 }
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toDoTask:hover{
+    background-color: #cde990;
+}
+
+.todo-tasks {
+    font-size: 1.5em;
+    min-width: 35%;
+    list-style: none;
+}
+
+/* New JavaScript classes*/
+.toDoTask {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin: 0.6em;
+    background-color: white;
+}
+
+.toDoTask li{
+    flex: 1;
+}
+
+.completed-button:hover{
+    background-color: #cde990;
+}
+.eliminate-button:hover {
+    background-color: #cde990;
+}
+
+.completed-button,
+.eliminate-button {
+    border: none;
+    padding: 2em;
+    background-color: white;
+}
+
