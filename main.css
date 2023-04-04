@@ -1,19 +1,18 @@
 *{
     margin: 0;
     padding: 0;
-    
 }
 
 body{
     background-color: #ffd4d4;
     font-family: 'Source Serif Pro', serif;
     min-height: 2rem;
+    
 }
 
 
 header{
     font-size: 1rem;
-    
 }
 
 header,
@@ -29,6 +28,7 @@ form input, form button{
     border-radius: 10px;
     border: none;
     background-color: white;
+    border-style: outset;
 }
 
 form button{
@@ -51,23 +51,18 @@ form button:hover{
     align-items: center;
 }
 
-.toDoTask:hover{
-    background-color: #cde990;
-}
-
 .todo-tasks {
     font-size: 1.5em;
     min-width: 35%;
     list-style: none;
 }
-
-/* New JavaScript classes*/
 .toDoTask {
     justify-content: space-between;
     align-items: center;
     display: flex;
     margin: 0.6em;
     background-color: white;
+    border-radius: 1em;
 }
 
 .toDoTask li{
@@ -86,5 +81,7 @@ form button:hover{
     border: none;
     padding: 2em;
     background-color: white;
+    border-radius: 2em;
+
 }
 

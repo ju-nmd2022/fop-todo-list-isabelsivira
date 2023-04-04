@@ -4,11 +4,12 @@ const todoInput = document.querySelector(".todo-input");
 const todoAddButton = document.querySelector(".todo-add-button");
 
 //Event listeners
-todoAddButton.addEventListener("click", addTodo);
+todoAddButton.addEventListener("click", addTask);
+todoList.addEventListener("click", deleteTask);
 
 
 //Functions
-function addTodo(event) {
+function addTask(event) {
 
    event.preventDefault();
     //creates a container for tasks
@@ -17,15 +18,18 @@ function addTodo(event) {
     
     //creates the list for tasks
     const newTaskElement = document.createElement("li");
-    newTaskElement.innerText = "hello";
+    newTaskElement.innerText = todoInput.value;
     newTaskElement.classList.add("new-task");
     toDoElement.appendChild(newTaskElement);
+    todoInput.value = "";
 
+    //Done button
     const completedButton = document.createElement("button");
-    completedButton.innerText = "✅";
+    completedButton.innerText = "✅ ";
     completedButton.classList.add("completed-button");
     toDoElement.appendChild(completedButton);
 
+    //Eliminate button
     const eliminateButton = document.createElement("button");
     eliminateButton.innerText = "❌";
     eliminateButton.classList.add("eliminate-button");
@@ -35,4 +39,10 @@ function addTodo(event) {
     todoList.appendChild(toDoElement);
 }
 
-addTodo();
+function deleteTask(event) {
+    const item = event.target;
+    if (item.classList[0] === "eliminate-button") {
+        const task = item.parentElement;
+        task.remove();
+    }
+}
