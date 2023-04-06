@@ -9,13 +9,16 @@ todoList.addEventListener("click", deleteAndComplete);
 
 //adds tasks to the list
 function addTask(event) {
-event.preventDefault();
+//The next line was added after consulting ChatGPT
+//Prevents the button from refreshing the input
+    event.preventDefault();
+
     //creates a container for tasks
     const toDoElement = document.createElement("div");
     toDoElement.classList.add("toDoTask");
     saveToLocalStorage(todoInput.value);
 
-    //creates the list for tasks
+    //creates the list of tasks
     const newTaskElement = document.createElement("li");
     newTaskElement.innerText = todoInput.value;
     newTaskElement.classList.add("new-task");
