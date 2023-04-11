@@ -7,8 +7,13 @@ const todoAddButton = document.querySelector(".todo-add-button");
 todoAddButton.addEventListener("click", addTask);
 todoList.addEventListener("click", deleteAndComplete);
 
+
 //adds tasks to the list
 function addTask(event) {
+
+if (todoInput.value === "") {
+    alert ("Please enter a task :)");
+} else {
 //The next line was added after consulting ChatGPT
 //Prevents the button from refreshing the input
     event.preventDefault();
@@ -38,6 +43,7 @@ function addTask(event) {
 
     //Add to the <ul> element
     todoList.appendChild(toDoElement);
+}
 }
 
 //Deletes and completes the tasks
