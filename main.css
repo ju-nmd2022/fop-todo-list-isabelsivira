@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #ffd4d4;
+    font-family: 'Source Serif Pro', serif;
+    min-height: 2rem;
+    
+}
+
+
+header{
+    font-size: 1rem;
+}
+
+header,
+form{
+    min-height: 13vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input, form button{
+    font-size: 1.2em;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    border-style: outset;
+}
+
+form button{
+    size: 2rem;
+    color: #ffd4d4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    size: 2rem;
+}
+
+form button:hover{
+    color: white;
+    background-color: #cde990;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-tasks {
+    font-size: 1.5em;
+    min-width: 35%;
+    list-style: none;
+}
+.toDoTask {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin: 0.6em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.toDoTask li{
+    flex: 1;
+}
+
+.completed-button:hover{
+    background-color: #cde990;
+}
+.eliminate-button:hover {
+    background-color: #cde990;
+}
+
+.completed-button,
+.eliminate-button {
+    border: none;
+    padding: 2em;
+    background-color: white;
+    border-radius: 2em;
+
+}
+
+.done li.new-task {
+    text-decoration: line-through;
+}
+
