@@ -71,13 +71,13 @@ function deleteAndComplete(event) {
         const taskText = task.querySelector(".new-task").innerText;
     
         if (storedDoneTasks !== null && storedDoneTasks.includes(taskText)) {
-          // Task was marked as done, remove it from "doneTasks"
+          //if task was marked as done removes it from "doneTasks"
           const updatedDoneTasks = storedDoneTasks.filter(
             (doneTask) => doneTask !== taskText
           );
           localStorage.setItem("doneTasks", JSON.stringify(updatedDoneTasks));
         } else {
-          // Task was not marked as done, add it to "doneTasks"
+          //if the task was not marked as done adds it to "doneTasks"
           const updatedDoneTasks = storedDoneTasks !== null ? [...storedDoneTasks, taskText] : [taskText];
           localStorage.setItem("doneTasks", JSON.stringify(updatedDoneTasks));
         }
@@ -98,18 +98,20 @@ function saveToLocalStorage(toDoTask) {
     tasks.push(toDoTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-//Load tasks from local storage
+
+//Loads tasks from local storage
 function loadTasks() {
   const storedTasks = localStorage.getItem("tasks");
   if (storedTasks !== null) {
     const tasks = JSON.parse(storedTasks);
     tasks.forEach((task) => {
-        // Check if the task has been deleted
+
+        //Checks if the task was deleted
         const deletedTasks = JSON.parse(localStorage.getItem("deletedTasks"));
         if (deletedTasks !== null && deletedTasks.includes(task)) {
-          return; // Skip the task if it has been deleted
+          return; 
         }
-      
+      //Creates the list again
         const toDoElement = document.createElement("div");
       toDoElement.classList.add("toDoTask");
 
