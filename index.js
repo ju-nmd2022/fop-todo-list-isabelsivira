@@ -6,7 +6,7 @@ const todoAddButton = document.querySelector(".todo-add-button");
 //Event listeners
 todoAddButton.addEventListener("click", addTask);
 todoList.addEventListener("click", deleteAndComplete);
-
+document.addEventListener("DOMContentLoaded", loadTasks);
 
 //adds tasks to the list
 function addTask(event) {
@@ -71,4 +71,32 @@ function saveToLocalStorage(toDoTask) {
     }
     tasks.push(toDoTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+//Load tasks from local storage
+function loadTasks() {
+  const storedTasks = localStorage.getItem("tasks");
+  if (storedTasks !== null) {
+    const tasks = JSON.parse(storedTasks);
+    tasks.forEach((task) => {
+      const toDoElement = document.createElement("div");
+      toDoElement.classList.add("toDoTask");
+
+      const newTaskElement = document.createElement("li");
+      newTaskElement.innerText = task;
+      newTaskElement.classList.add("new-task");
+      toDoElement.appendChild(newTaskElement);
+
+      const completedButton = document.createElement("button");
+      completedButton.innerText = "✅";
+      completedButton.classList.add("completed-button");
+      toDoElement.appendChild(completedButton);
+
+      const eliminateButton = document.createElement("button");
+      eliminateButton.innerText = "❌";
+      eliminateButton.classList.add("eliminate-button");
+      toDoElement.appendChild(eliminateButton);
+
+      todoList.appendChild(toDoElement);
+    });
+  }
 }
