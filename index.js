@@ -49,13 +49,39 @@ if (todoInput.value === "") {
 //Deletes and completes the tasks
 function deleteAndComplete(event) {
     const item = event.target;
-    if (item.classList[0] === "eliminate-button") {
-        const task = item.parentElement;
+    const task = item.parentElement;
+
+    if (item.classList.contains("eliminate-button")) {
         task.remove();
+    const storedDeletedTasks = JSON.parse(localStorage.getItem("deletedTasks"));
+    const taskText = task.querySelector(".new-task").innerText;
+
+    if (storedDeletedTasks !== null) {
+      storedDeletedTasks.push(taskText);
+      localStorage.setItem("deletedTasks", JSON.stringify(storedDeletedTasks));
+    } else {
+      localStorage.setItem("deletedTasks", JSON.stringify([taskText]));
     }
-    if (item.classList[0] === "completed-button") {
-        const task = item.parentElement;
+
+    return;
+    }
+    if (item.classList.contains ("completed-button")) {
         task.classList.toggle("done");
+        const storedDoneTasks = JSON.parse(localStorage.getItem("doneTasks"));
+        const taskText = task.querySelector(".new-task").innerText;
+    
+        if (storedDoneTasks !== null && storedDoneTasks.includes(taskText)) {
+          // Task was marked as done, remove it from "doneTasks"
+          const updatedDoneTasks = storedDoneTasks.filter(
+            (doneTask) => doneTask !== taskText
+          );
+          localStorage.setItem("doneTasks", JSON.stringify(updatedDoneTasks));
+        } else {
+          // Task was not marked as done, add it to "doneTasks"
+          const updatedDoneTasks = storedDoneTasks !== null ? [...storedDoneTasks, taskText] : [taskText];
+          localStorage.setItem("doneTasks", JSON.stringify(updatedDoneTasks));
+        }
+    
     }
 }
 
@@ -78,7 +104,13 @@ function loadTasks() {
   if (storedTasks !== null) {
     const tasks = JSON.parse(storedTasks);
     tasks.forEach((task) => {
-      const toDoElement = document.createElement("div");
+        // Check if the task has been deleted
+        const deletedTasks = JSON.parse(localStorage.getItem("deletedTasks"));
+        if (deletedTasks !== null && deletedTasks.includes(task)) {
+          return; // Skip the task if it has been deleted
+        }
+      
+        const toDoElement = document.createElement("div");
       toDoElement.classList.add("toDoTask");
 
       const newTaskElement = document.createElement("li");
@@ -96,7 +128,13 @@ function loadTasks() {
       eliminateButton.classList.add("eliminate-button");
       toDoElement.appendChild(eliminateButton);
 
+    //Checks if the task is marked as done
+      const storedDoneTasks = JSON.parse(localStorage.getItem("doneTasks"));
+      if (storedDoneTasks !== null && storedDoneTasks.includes(task)) {
+        toDoElement.classList.add("done");
+      }
+
       todoList.appendChild(toDoElement);
-    });
+  });
   }
 }
